@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="Motion Tracking"
+        android:id="@+id/pref_cate_motion_tracking">
+        <CheckBoxPreference
+            android:key="pref_pose_enabled"
+            android:title="Enable motion tracking"
+            android:defaultValue="true"
+            />
+
+        <CheckBoxPreference
+            android:key="pref_al_mode"
+            android:dependency="pref_pose_enabled"
+            android:title="Area learning mode"
+            />
+
+        <CheckBoxPreference
+            android:key="pref_adf_enabled"
+            android:dependency="pref_pose_enabled"
+            android:title="Load Area Description File"
+            android:defaultValue="false"
+            />
+
+        <ListPreference
+            android:key="pref_adf_uuid"
+            android:title="Select area description file"
+            android:dependency="pref_adf_enabled"
+            />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Wifi Scanning"
+        android:id="@+id/pref_cate_wifi">
+
+        <CheckBoxPreference
+            android:key="pref_wifi_enabled"
+            android:title="Enable Wifi"
+            android:summary="Scan Wifi footprints"
+            android:defaultValue="true"
+            />
+        <CheckBoxPreference
+            android:key="pref_auto_wifi_enabled"
+            android:dependency="pref_wifi_enabled"
+            android:title="Continuous Wifi scanning"
+            android:defaultValue="false"
+            />
+
+        <ListPreference
+            android:key="pref_scan_interval"
+            android:dependency="pref_auto_wifi_enabled"
+            android:title="Scan interval (in sec)"
+            android:entries="@array/list_interval_entries"
+            android:entryValues="@array/list_interval_values"
+            android:defaultValue="1"
+            android:summary="Scan interval: 1 sec"
+            />
+
+        <ListPreference
+            android:key="pref_num_requests"
+            android:dependency="pref_wifi_enabled"
+            android:entries="@array/list_requests_entries"
+            android:entryValues="@array/list_requests_values"
+            android:summary="1 requests per scan"
+            android:defaultValue="1"
+            android:title="Number of requests per scan"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="File Writing">
+        <CheckBoxPreference
+            android:key="pref_file_enabled"
+            android:title="Write files"
+            android:summary="Stream to external storage"
+            android:defaultValue="true"
+            />
+        <EditTextPreference
+            android:key="pref_folder_prefix"
+            android:title="Folder prefix"
+            android:dependency="pref_file_enabled"
+            android:summary="The prefix of the folder name"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

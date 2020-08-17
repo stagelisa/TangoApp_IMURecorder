@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.yanhang.tangoimurecorder.MainActivity">
+
+    <org.rajawali3d.surface.RajawaliSurfaceView
+        android:id="@+id/gl_surface_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+    <!--<android.opengl.GLSurfaceView-->
+        <!--android:id="@+id/video_surface_view"-->
+        <!--android:layout_width="@dimen/video_width"-->
+        <!--android:layout_height="@dimen/video_height"-->
+        <!--android:onClick="switchCamera"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_alignParentTop="true"/>-->
+
+    <LinearLayout
+        android:id="@+id/hud_panel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:columnCount="4"
+            android:rowCount="5">
+
+            <!-- Rotation-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="Gyro.:"/>
+            <TextView
+                android:layout_width="@dimen/imu_number_width"
+                android:layout_height="wrap_content"
+                android:id="@+id/label_rx"
+                android:layout_gravity="right"
+                android:text="0.000000"/>
+            <TextView
+                android:layout_width="@dimen/imu_number_width"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:id="@+id/label_ry"
+                android:text="0.000000"/>
+            <TextView
+                android:layout_width="@dimen/imu_number_width"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:id="@+id/label_rz"
+                android:text="0.000000"/>
+
+            <!-- Acceleration -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="Acce.:"/>
+            <TextView
+                android:layout_width="@dimen/imu_number_width"
+                android:layout_height="wrap_content"
+                android:id="@+id/label_ax"
+                android:layout_gravity="right"
+                android:text="0.000000"/>
+            <TextView
+                android:layout_width="@dimen/imu_number_width"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:id="@+id/label_ay"
+                android:text="0.000000"/>
+            <TextView
+                android:layout_width="@dimen/imu_number_width"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:id="@+id/label_az"
+                android:text="0.000000"/>
+
+            <!-- user acceleration -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="LinAcce:"/>
+            <TextView
+                android:layout_width="@dimen/imu_number_width"
+                android:layout_height="wrap_content"
+                android:id="@+id/label_lx"
+                android:layout_gravity="right"
+                android:text="0.000000"/>
+            <TextView
+                android:layout_width="@dimen/imu_number_width"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:id="@+id/label_ly"
+                android:text="0.000000"/>
+            <TextView
+                android:layout_width="@dimen/imu_number_width"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:id="@+id/label_lz"
+                android:text="0.000000"/>
+
+            <!-- Magnetometer -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="Magnet:"/>
+            <TextView
+                android:layout_width="@dimen/imu_number_width"
+                android:layout_height="wrap_content"
+                android:id="@+id/label_mx"
+                android:layout_gravity="right"
+                android:text="0.000000"/>
+            <TextView
+                android:layout_width="@dimen/imu_number_width"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:id="@+id/label_my"
+                android:text="0.000000"/>
+            <TextView
+                android:layout_width="@dimen/imu_number_width"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:id="@+id/label_mz"
+                android:text="0.000000"/>
+        </GridLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wifi Records: "/>
+            <TextView
+                android:id="@+id/label_wifi_record_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"/>
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="match_parent" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wifi hotspots: "/>
+            <TextView
+                android:id="@+id/label_wifi_beacon_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"/>
+        </LinearLayout>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Step Count: "/>
+            <TextView
+                android:id="@+id/label_step_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="N/A"/>
+        </LinearLayout>
+
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SS_AL:"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/label_ss_to_al"
+                android:text="N/A"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="D_SS:"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/label_device_to_ss"
+                android:text="N/A"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="D_AL:"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/label_device_to_al"
+                android:text="N/A"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_start_stop"
+        android:text="@string/start_title"
+        android:onClick="startStopRecording"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        />
+
+    <Button
+        android:id="@+id/button_scan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:text="Scan"
+        android:onClick="scanWifi"/>
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:columnCount="2"
+        android:rowCount="6">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="Motion tracking: "/>
+        <TextView
+            android:id="@+id/label_info_pose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="Area descriptor: "/>
+        <TextView
+            android:id="@+id/label_info_adf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="Area learning: "/>
+        <TextView
+            android:id="@+id/label_info_al"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="Wifi scanning: "/>
+        <TextView
+            android:id="@+id/label_info_wifi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="Auto-scan interval: "/>
+        <TextView
+            android:id="@+id/label_info_wifi_interval"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1: "/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="Wifi redundancy: "/>
+        <TextView
+            android:id="@+id/label_info_redun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="Write file:"/>
+        <TextView
+            android:id="@+id/label_info_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enabled"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="Folder prefix:"/>
+        <TextView
+            android:id="@+id/label_info_prefix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""/>
+    </GridLayout>
+
+</RelativeLayout>
